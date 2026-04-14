@@ -18,21 +18,25 @@ def main():
     screen.blit(kot_img,kot_rct)
     
     tmr = 0
+
     while True:
+    
         for event in pg.event.get():
             if event.type == pg.QUIT: return
         key_lst = pg.key.get_pressed()
+        x = 0
+        y = 0
         if key_lst[pg.K_UP] :
-            kot_rct.move_ip((0 , -1))
+            y -= 1
         if key_lst[pg.K_DOWN] :
-            kot_rct.move_ip((0 , +1))
+            y += 1
         if key_lst[pg.K_LEFT] :
-            kot_rct.move_ip((-1 , 0))
+            x -= 1
         if key_lst[pg.K_RIGHT] :
-            kot_rct.move_ip((+1 , 0))
+            x += 1
         else: #風の実装
-            kot_rct.move_ip((-1 , 0))
-        
+            x -= 1
+        kot_rct.move_ip((x , y))
         x = tmr%3200 #練習6
         screen.blit(bg_img, [-x, 0]) #練習2
         screen.blit(rbg_img, [-x+1600, 0]) #練習7 
